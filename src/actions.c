@@ -20,6 +20,7 @@ struct Settings *load_settings(gpointer src, gpointer window)
 	struct Settings *conf;
 
 	if (!is_config_exists()) {
+		key_file = g_key_file_new();
 		const gchar *message = ERR_CONFIG_CREATE;
 		printf("-> actions.c: config file doesn't exist\n");
 		printf("\t-> actions.c: creating with dummy values...\n");
