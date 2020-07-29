@@ -1,7 +1,7 @@
 #include "gtk_menu.h"
 #include "actions.h"
 
-/* layout of window:
+/* layout of settings window:
    --vbox_main--
    --------------
    |label entry	|hbox_body
@@ -24,11 +24,6 @@
    this function should dynamically import all configs */
 
 /***********************
-* private declarations
-************************/
-
-
-/***********************
 * public definitions 
 ************************/
 int display_settings(gpointer src, gpointer par_win)
@@ -36,7 +31,6 @@ int display_settings(gpointer src, gpointer par_win)
 	GtkWidget *window;
 	GtkWidget *vbox_main, *vbox_label, *vbox_entry, *hbox_body, *hbox_btn;
 	GtkWidget *lbl_ip, *lbl_port, *lbl_user, *lbl_pass;
-	//GtkWidget *ent_ip, *ent_port, *ent_user, *ent_pass;
 	GtkWidget *btn_save, *btn_close;
 	struct Entries *entries = malloc(sizeof(struct Entries));
 	struct Settings *conf;
@@ -121,6 +115,23 @@ int display_settings(gpointer src, gpointer par_win)
 	return 0;
 }
 
-/***********************
-* private definitions 
-************************/
+int display_about (gpointer src, gpointer par_window)
+{
+	GtkWidget *about_dialog;
+	const gchar *authors[] = {"Ben Gregory", NULL};
+	const gchar *documenters[] = {"Ben Gregory", NULL};
+
+	about_dialog = gtk_about_dialog_new();
+
+	/* fill information */
+	gtk_about_dialog_set_program_name(GTK_ABOUT_DIALOG(about_dialog), "Open Cubes");
+	gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(about_dialog), "Copyright \xc2\xa9 Ben Gregory");
+	gtk_about_dialog_set_authors(GTK_ABOUT_DIALOG(about_dialog), authors);
+	gtk_about_dialog_set_documenters(GTK_ABOUT_DIALOG(about_dialog), documenters);
+
+	gtk_window_set_title(GTK_WINDOW(about_dialog), "About");
+
+	gtk_widget_show(about_dialog);
+	
+	return 0;
+}

@@ -1,3 +1,6 @@
+#ifndef GTK_SETUP_H
+#define GTK_SETUP_H
+
 #include <gtk/gtk.h>
 
 enum {
@@ -7,3 +10,5 @@ enum {
 };
 
 int build_frame(GtkApplication *);
+
+#endif

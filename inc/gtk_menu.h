@@ -16,5 +16,6 @@ struct Entries {
 };
 
 int display_settings(gpointer src, gpointer par_win);
+int display_about(gpointer src, gpointer par_win);
 
 #endif

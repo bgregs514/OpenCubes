@@ -16,6 +16,8 @@
 #define USER_DEFAULT "Enter User Here"
 #define PASS_DEFAULT "Enter Password Here"
 
+#define LINUX_WEB_DOC "xdg-open https://www.ibm.com/support/knowledgecenter/SSD29G_2.0.0/main/welcome.html"
+
 struct Settings {
 	char *ip;
 	char *port;
@@ -29,5 +31,6 @@ struct Settings {
 struct Settings *load_settings(gpointer src, gpointer window);
 int save_settings(gpointer entries);
 int is_config_exists();
+int web_open_doc();
 
 #endif

@@ -1,3 +1,6 @@
+#ifndef TM1_PY_H
+#define TM1_PY_H
+
 #include <Python.h>
 //#include "python3.8/Python.h"
 #include <gtk/gtk.h> // needed for the gpointer reference; need to rethink dependencies and defs
@@ -13,3 +16,5 @@ struct cube_names {
 };
 
 struct cube_names *load_py(struct py_data *, char *);
+
+#endif

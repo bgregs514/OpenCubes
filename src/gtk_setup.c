@@ -139,26 +139,34 @@ static GtkWidget *create_view_and_model(gpointer window)
 static GtkWidget *build_menu(gpointer window)
 {
 	GtkWidget *menubar;
-	GtkWidget *file_menu;
-
-	GtkWidget *file_item;
-	GtkWidget *refresh_item;
-	GtkWidget *settings_item;
+	GtkWidget *file_menu, *help_menu;
+	GtkWidget *file_sub, *help_sub;
+	GtkWidget *refresh_item, *settings_item, *about_item, *doc_item;
 
 	menubar = gtk_menu_bar_new();
 	file_menu = gtk_menu_new();
+	help_menu = gtk_menu_new();
 
-	file_item = gtk_menu_item_new_with_label("File");
+	file_sub = gtk_menu_item_new_with_label("File");
 	refresh_item = gtk_menu_item_new_with_label("Refresh");
 	settings_item = gtk_menu_item_new_with_label("Settings");
+	help_sub = gtk_menu_item_new_with_label("Help");
+	doc_item = gtk_menu_item_new_with_label("Documentation");
+	about_item = gtk_menu_item_new_with_label("About");
 
-	gtk_menu_item_set_submenu(GTK_MENU_ITEM(file_item), file_menu);
+	gtk_menu_item_set_submenu(GTK_MENU_ITEM(file_sub), file_menu);
+	gtk_menu_item_set_submenu(GTK_MENU_ITEM(help_sub), help_menu);
 	gtk_menu_shell_append(GTK_MENU_SHELL(file_menu), refresh_item);
 	gtk_menu_shell_append(GTK_MENU_SHELL(file_menu), settings_item);
-	gtk_menu_shell_append(GTK_MENU_SHELL(menubar), file_item);
+	gtk_menu_shell_append(GTK_MENU_SHELL(help_menu), doc_item);
+	gtk_menu_shell_append(GTK_MENU_SHELL(help_menu), about_item);
+	gtk_menu_shell_append(GTK_MENU_SHELL(menubar), file_sub);
+	gtk_menu_shell_append(GTK_MENU_SHELL(menubar), help_sub);
 
 	//g_signal_connect(G_OBJECT(settings_item), "activate", G_CALLBACK(load_settings), window);
 	g_signal_connect(G_OBJECT(settings_item), "activate", G_CALLBACK(display_settings), window);
+	g_signal_connect(G_OBJECT(doc_item), "activate", G_CALLBACK(web_open_doc), NULL);
+	g_signal_connect(G_OBJECT(about_item), "activate", G_CALLBACK(display_about), window);
 
 	return menubar;
 }

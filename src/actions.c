@@ -74,6 +74,15 @@ int is_config_exists()
 	return access(CONFIG_FILE, F_OK) == -1 ? 0 : 1;
 }
 
+int web_open_doc()
+{
+	/* probably need to add a check for version of TM1/PA to link to the appropriate
+	   documentation */
+	system(LINUX_WEB_DOC);
+
+	return 0;
+}
+
 /***********************
 * internal definitions
 ************************/
