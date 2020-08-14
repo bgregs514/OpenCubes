@@ -25,3 +25,6 @@ def get_names(param):
 		name_list.append(item["Name"]);
 		#print(item);
 	return name_list;
+
+def get_process(proc):
+	return data;

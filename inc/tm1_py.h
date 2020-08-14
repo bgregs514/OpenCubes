@@ -5,16 +5,16 @@
 //#include "python3.8/Python.h"
 #include <gtk/gtk.h> // needed for the gpointer reference; need to rethink dependencies and defs
 
-struct py_data {
-        char *script;
-        char *func;
-};
+#define PY_SCRIPT "py_test"
+#define PY_FUNC   "get_names"
 
 struct cube_names {
         char **name;
         int size;
 };
 
-struct cube_names *load_py(struct py_data *, char *);
+PyObject *init_py();
+void close_py();
+struct cube_names *load_py(PyObject *pModule, char *);
 
 #endif

@@ -32,5 +32,6 @@ struct Settings *load_settings(gpointer src, gpointer window);
 int save_settings(gpointer entries);
 int is_config_exists();
 int web_open_doc();
+int row_clicked(GtkTreeView *treeview, GtkTreePath *path, GtkTreeViewColumn *col, gpointer userdata);
 
 #endif

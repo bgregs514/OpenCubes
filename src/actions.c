@@ -4,6 +4,7 @@
 #include "actions.h"
 #include "gtk_err.h"
 #include "gtk_menu.h"
+#include "gtk_setup.h"
 
 /***********************
 * internal declarations
@@ -79,6 +80,24 @@ int web_open_doc()
 	/* probably need to add a check for version of TM1/PA to link to the appropriate
 	   documentation */
 	system(LINUX_WEB_DOC);
+
+	return 0;
+}
+
+int row_clicked(GtkTreeView *treeview, GtkTreePath *path, GtkTreeViewColumn *col, gpointer userdata)
+{
+	GtkTreeModel *model;
+	GtkTreeIter iter;
+
+	model = gtk_tree_view_get_model(treeview);
+	if (gtk_tree_model_get_iter(model, &iter, path)) {
+		gchar *type, *name;
+		gtk_tree_model_get(model, &iter, COL_TYPE, &type, -1);
+		gtk_tree_model_get(model, &iter, COL_NAME, &name, -1);
+		printf("row clicked->type: %s name: %s\n", type, name);
+		g_free(type);
+		g_free(name);
+	}
 
 	return 0;
 }
